@@ -1,0 +1,32 @@
+\section{Разработка грамматики}
+
+\subsection{Задание}
+Описания переменных в Си.
+
+\subsection{Грамматика}
+\begin{center}
+    \begin{tabular}{ r c l }
+        $S$ & $\to$ & $WS$\\
+        $S$ & $\to$ & $\varepsilon$ \\
+        $W$ & $\to$ & $<ident>V$\\
+        $V$ & $\to$ & $<pointers><ident>;$\\
+        $V$ & $\to$ & $<pointers><ident>,V$\\
+        $V$ & $\to$ & $<ident>;$\\
+        $V$ & $\to$ & $<ident>,V$\\
+    \end{tabular}
+    
+    \begin{tabular}{ | l | l | }
+        \hline
+        \textbf{Нетерминал} & \textbf{Описание}\\
+        \hline
+        $S$ & Начальный терминал. \\
+        \hline
+        $W$ & Корректное описание переменных одного типа. \\
+        \hline
+        $V$ & Список переменных одного типа. \\
+        \hline
+    \end{tabular}
+\end{center}
+
+Левая рекурсия и правое ветвление отсутствует.
+
