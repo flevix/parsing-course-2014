@@ -1,0 +1,264 @@
+\section{Тесты с визуализацией}
+
+\subsection{Пример из задания}
+
+\begin{lstlisting}
+"int a, *b, ***c, d;"
+
+S
+#  W
+#  #  <type>::int
+#  #  V
+#  #  #  <variable>::a
+#  #  #  ,
+#  #  #  V
+#  #  #  #  <pointer's>::*
+#  #  #  #  <name>::b
+#  #  #  #  ,
+#  #  #  #  V
+#  #  #  #  #  <pointer's>::***
+#  #  #  #  #  <name>::c
+#  #  #  #  #  ,
+#  #  #  #  #  V
+#  #  #  #  #  #  <variable>::d
+#  #  #  #  #  #  ;
+#  S
+#  #  <end>
+\end{lstlisting}
+
+\subsection{S $\to$ WS}
+
+\begin{lstlisting}
+0| "int x; int y; int z,\nz;"
+1| " int x;\n\n\tint y;\t"
+2| "int\nx\n,\ny\n;double y;"
+
+0|
+S
+#  W
+#  #  <type>::int
+#  #  V
+#  #  #  <variable>::x
+#  #  #  ;
+#  S
+#  #  W
+#  #  #  <type>::int
+#  #  #  V
+#  #  #  #  <variable>::y
+#  #  #  #  ;
+#  #  S
+#  #  #  W
+#  #  #  #  <type>::int
+#  #  #  #  V
+#  #  #  #  #  <variable>::z
+#  #  #  #  #  ,
+#  #  #  #  #  V
+#  #  #  #  #  #  <variable>::z
+#  #  #  #  #  #  ;
+#  #  #  S
+#  #  #  #  <end>
+
+1|
+S
+#  W
+#  #  <type>::int
+#  #  V
+#  #  #  <variable>::x
+#  #  #  ;
+#  S
+#  #  W
+#  #  #  <type>::int
+#  #  #  V
+#  #  #  #  <variable>::y
+#  #  #  #  ;
+#  #  S
+#  #  #  <end>
+
+2|
+S
+#  W
+#  #  <type>::int
+#  #  V
+#  #  #  <variable>::x
+#  #  #  ,
+#  #  #  V
+#  #  #  #  <variable>::y
+#  #  #  #  ;
+#  S
+#  #  W
+#  #  #  <type>::double
+#  #  #  V
+#  #  #  #  <variable>::y
+#  #  #  #  ;
+#  #  S
+#  #  #  <end>
+\end{lstlisting}
+
+\subsection{S $\to \varepsilon$}
+
+\begin{lstlisting}
+0| ""
+1| " "
+2| " \t "
+3| " \r \n \t   \t \n"
+
+0|
+S
+#  <end>
+
+1|
+S
+#  <end>
+
+2|
+S
+#  <end>
+
+3|
+S
+#  <end>
+\end{lstlisting}
+
+\subsection{Несколько корректных тестов}
+
+\begin{lstlisting}
+0| "int x;"
+1| "int x,Y;"
+2| "int x,y; double z;"
+3| "int x;double z;"
+4| "int x,*y,\n**z;\tx*y;"
+
+0|
+S
+#  W
+#  #  <type>::int
+#  #  V
+#  #  #  <variable>::x
+#  #  #  ;
+#  S
+#  #  <end>
+
+1|
+S
+#  W
+#  #  <type>::int
+#  #  V
+#  #  #  <variable>::x
+#  #  #  ,
+#  #  #  V
+#  #  #  #  <variable>::Y
+#  #  #  #  ;
+#  S
+#  #  <end>
+
+2|
+S
+#  W
+#  #  <type>::int
+#  #  V
+#  #  #  <variable>::x
+#  #  #  ,
+#  #  #  V
+#  #  #  #  <variable>::y
+#  #  #  #  ;
+#  S
+#  #  W
+#  #  #  <type>::double
+#  #  #  V
+#  #  #  #  <variable>::z
+#  #  #  #  ;
+#  #  S
+#  #  #  <end>
+
+3|
+S
+#  W
+#  #  <type>::int
+#  #  V
+#  #  #  <variable>::x
+#  #  #  ;
+#  S
+#  #  W
+#  #  #  <type>::double
+#  #  #  V
+#  #  #  #  <variable>::z
+#  #  #  #  ;
+#  #  S
+#  #  #  <end>
+
+4|
+S
+#  W
+#  #  <type>::int
+#  #  V
+#  #  #  <variable>::x
+#  #  #  ,
+#  #  #  V
+#  #  #  #  <pointer's>::*
+#  #  #  #  <name>::y
+#  #  #  #  ,
+#  #  #  #  V
+#  #  #  #  #  <pointer's>::**
+#  #  #  #  #  <name>::z
+#  #  #  #  #  ;
+#  S
+#  #  W
+#  #  #  <type>::x
+#  #  #  V
+#  #  #  #  <pointer's>::*
+#  #  #  #  <name>::y
+#  #  #  #  ;
+#  #  S
+#  #  #  <end>
+\end{lstlisting}
+
+
+\subsection{Тесты на ParseException. Некорректный символ}
+
+\begin{lstlisting}
+ 0| "1"
+ 1| "int 3"
+ 2| "_"
+ 3| "int x,)"
+ 4| "int x,y&"
+ 5| "int x,y;&"
+
+0|Illegal character 1 at pos 1
+1|Illegal character 3 at pos 5
+2|Illegal character _ at pos 1
+3|Illegal character ) at pos 7
+4|Illegal character & at pos 8
+5|Illegal character & at pos 9
+\end{lstlisting}
+
+
+\subsection{Тесты на ParseException. Неожиданный нетерминал}
+
+\begin{lstlisting}
+0| "*",
+1| ",",
+2| ";",
+3| "  *",
+4| "int ,",
+5| "int ;",
+6| "int,",
+7| "int;",
+8| "int x,;",
+9| "int x,,",
+10| "int x,*,"
+
+0|`Ident` or `End` expected at pos 1
+1|`Ident` or `End` expected at pos 1
+2|`Ident` or `End` expected at pos 1
+3|`Ident` or `End` expected at pos 3
+4|`Pointers` or `Ident` expected at pos 5
+5|`Pointers` or `Ident` expected at pos 5
+6|`Pointers` or `Ident` expected at pos 4
+7|`Pointers` or `Ident` expected at pos 4
+8|`Pointers` or `Ident` expected at pos 7
+9|`Pointers` or `Ident` expected at pos 7
+10|`Ident` expected at pos 8
+\end{lstlisting}
+
+
+
