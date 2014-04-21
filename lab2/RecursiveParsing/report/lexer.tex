@@ -8,25 +8,26 @@
 
 Заведём класс \textbf{Token} для хранения терминалов.
 
-\begin{lstlisting}
-public enum Token {
-    COMMA, SEMICOLON, POINTERS, END, IDENT
-}
-\end{lstlisting}
+\begin{center}
+    \begin{lstlisting}
+        public enum Token {
+            COMMA, SEMICOLON, POINTERS, END, IDENT
+        }
+    \end{lstlisting}
 
-\begin{tabular}{| l | c |}
-    \hline
-    \textbf{Терминал} & \textbf{Токен} \\
-    \hline
-    . & COMMA \\
-    \hline
-    ; & SEMICOLON \\
-    \hline
-    <pointers> & POINTERS \\
-    \hline
-    \$ & END \\
-    \hline
-    <ident> & IDENT \\
-    \hline
-\end{tabular}
-
+    \begin{tabular}{| l | c |}
+        \hline
+        \textbf{Терминал} & \textbf{Токен} \\
+        \hline
+        . & COMMA \\
+        \hline
+        ; & SEMICOLON \\
+        \hline
+        <pointers> & POINTERS \\
+        \hline
+        \$ & END \\
+        \hline
+        <ident> & IDENT \\
+        \hline
+    \end{tabular}
+\end{center}
