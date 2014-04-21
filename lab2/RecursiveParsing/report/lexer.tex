@@ -1,0 +1,32 @@
+\section{Построение лексического анализатора}
+
+В нашей грамматике четыре терминала:
+    ‘\textbf{,}’,
+    ‘\textbf{;}’,
+    ‘\textbf{<pointers>}’ (указатели),
+    ‘\textbf{<ident>}’ (идентификатор: тип или имя переменной).
+
+Заведём класс \textbf{Token} для хранения терминалов.
+
+\begin{lstlisting}
+public enum Token {
+    COMMA, SEMICOLON, POINTERS, END, IDENT
+}
+\end{lstlisting}
+
+\begin{tabular}{| l | c |}
+    \hline
+    \textbf{Терминал} & \textbf{Токен} \\
+    \hline
+    . & COMMA \\
+    \hline
+    ; & SEMICOLON \\
+    \hline
+    <pointers> & POINTERS \\
+    \hline
+    \$ & END \\
+    \hline
+    <ident> & IDENT \\
+    \hline
+\end{tabular}
+
