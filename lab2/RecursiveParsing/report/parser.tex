@@ -2,18 +2,16 @@
 
 Построим множество \textbf{FIRST} и \textbf{FOLLOW} для нетерминалов грамматики.
 
-???
-
 \begin{center}
     \begin{tabular}{ | l | l | l | }
         \hline
         \textbf{Нетерминал} & \textbf{FIRST} & \textbf{FOLLOW} \\
         \hline
-        $S$ & ;, $\varepsilon$ & <ident>, \$ \\
+        $S$ & <ident>, $\varepsilon$ & \$ \\
         \hline
-        $W$ & ;, $\varepsilon$ & <ident>, \$ \\
+        $W$ & <ident> & <ident>, \$ \\
         \hline
-        $V$ & <ident> & <ident>, \$ \\
+        $V$ & <ident>, <pointers> & <ident>, \$ \\
         \hline
     \end{tabular}
 \end{center}
