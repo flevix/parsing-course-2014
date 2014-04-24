@@ -1,0 +1,10 @@
+#!/bin/bash
+
+antlrjar="/usr/local/Cellar/antlr/4.2.2/antlr-4.2.2-complete.jar"
+mkdir -p out
+cp src/Main.java src/EvalVisitor.java src/Expr.g4 out
+cd out
+antlr4 -o . -lib . -listener -visitor Expr.g4
+javac -cp $antlrjar *.java
+java -cp $antlrjar:. Main ../t.expr
+
